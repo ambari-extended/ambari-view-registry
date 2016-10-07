@@ -1,0 +1,33 @@
+@import "bootstrap";
+@import "fonts";
+
+@body-bg: #fafafa;
+@navbar-default-bg: #ebebeb;
+@navbar-default-link-color: #777;
+
+
+@border-radius-base: 0px;
+
+.search-bar {
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid @navbar-default-bg;
+}
+
+.version-header {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid @navbar-default-bg;
+}
+
+.version-body {
+  p {
+    display: inline-block;
+    padding: 5px 15px;
+    margin: 0px 2px;
+    background-color: #ebebeb;
+    &:nth-child(1) {
+      margin-left: 0px;
+    }
+  }
+}

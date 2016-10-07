@@ -1,0 +1,13 @@
+{{#bs-navbar fluid=false}}
+  <div class="navbar-header">
+    {{#link-to "application" class="navbar-brand"}}<strong>Ambari View Registry</strong>{{/link-to}}
+  </div>
+  {{#bs-navbar-content}}
+    {{#bs-navbar-nav class="navbar-right"}}
+      {{#link-to "upload" class="btn btn-default navbar-btn"}}{{fa-icon "cloud-upload" size="lg"}} Upload new definition{{/link-to}}
+    {{/bs-navbar-nav}}
+  {{/bs-navbar-content}}
+{{/bs-navbar}}
+<div class="container">
+  {{outlet}}
+</div>

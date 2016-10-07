@@ -1,0 +1,15 @@
+{{#each applications as |application|}}
+  {{yield application}}
+{{else}}
+  <p class="text-center">
+  {{#if search}}
+    {{fa-icon "exclamation-triangle" size=4}}
+    <h3>Zero applications found. Try with different search string.</h3>
+  {{else}}
+    {{fa-icon "search" class="fa-flip-horizontal" size=4}}
+    <h3>Type to search applications</h3>
+  {{/if}}
+  </p>
+
+{{/each}}
+

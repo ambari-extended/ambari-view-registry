@@ -1,0 +1,10 @@
+<div class="row search-bar" xmlns="http://www.w3.org/1999/html">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="input-group">
+      {{input type="text" class="form-control" placeholder="Search for application names" value=searchField}}
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" {{action "search" searchField}}>{{fa-icon "search"}} Search</button>
+      </span>
+    </div>
+  </div>
+</div>
