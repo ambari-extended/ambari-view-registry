@@ -127,9 +127,7 @@ public class ApplicationService {
 
   private void validateVersionIsGreater(ApplicationConfig config, Application application) {
     Optional<ApplicationVersion> maxVersionOptional =
-          application.getVersions().stream().max(
-              (v1, v2) -> Version.valueOf(v1.getVersion()).compareTo(Version.valueOf(v2.getVersion()))
-          );
+        getMaxVersion(application);
 
     if (maxVersionOptional.isPresent()) {
       ApplicationVersion maxVersion = maxVersionOptional.get();
@@ -140,6 +138,12 @@ public class ApplicationService {
         throw new ConfigVersionMismatchException(errMessage);
       }
     }
+  }
+
+  private Optional<ApplicationVersion> getMaxVersion(Application application) {
+    return application.getVersions().stream().max(
+        (v1, v2) -> Version.valueOf(v1.getVersion()).compareTo(Version.valueOf(v2.getVersion()))
+    );
   }
 
   private String getJsonString(ApplicationConfig config) throws JsonProcessingException {
@@ -160,7 +164,26 @@ public class ApplicationService {
     return applications;
   }
 
-  public Optional<Application> findByName(String appName) {
+  public Optional<Application> findApplicationByName(String appName) {
     return applicationRepository.findByName(appName);
+  }
+
+  public Optional<ApplicationVersion> findApplicationVersion(String appName, String version) {
+    Optional<Application> application = applicationRepository.findByName(appName);
+    if(application.isPresent()) {
+      if ("latest".equalsIgnoreCase(version)) {
+        return getMaxVersion(application.get());
+      } else {
+        return application.get().getVersions()
+            .stream()
+            .filter(v -> version.equalsIgnoreCase(v.getVersion()))
+            .findFirst();
+      }
+    }
+    return Optional.empty();
+  }
+
+  public Optional<ApplicationVersion> publishVersion(String appName, String version) {
+    return null;
   }
 }

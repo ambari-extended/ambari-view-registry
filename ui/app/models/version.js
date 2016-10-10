@@ -8,6 +8,9 @@ export default DS.Model.extend({
   config: Ember.computed('applicationConfig', function() {
     return JSON.parse(this.get('applicationConfig'));
   }),
+  prettyJson: Ember.computed('config', function() {
+    return JSON.stringify(this.get('config'), null, 4);
+  }),
   application: DS.belongsTo('application', { async: false })
 
 });

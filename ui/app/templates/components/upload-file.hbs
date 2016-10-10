@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h4>{{fa-icon "upload"}} Upload Application Definition</h4></div>
+  <div class="panel-body">
+    {{#unless isUploading}}
+      {{#file-picker fileLoaded="fileLoaded" preview=false}}
+        <div class="text-center vert-align-middle">
+          {{fa-icon "cloud-upload" size="4"}}
+          <h4> Drag file to upload or click to browse</h4>
+        </div>
+      {{/file-picker}}
+    {{else}}
+      <div class="progress file-picker-progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{uploadPercent}}" aria-valuemin="0"
+             aria-valuemax="100" style={{uploadPercentStyle}}>
+          {{uploadPercent}}
+        </div>
+      </div>
+      <em>{{uploadFileName}}</em>
+    {{/unless}}
+  </div>
+  <div class="panel-footer clearfix">
+    <div class="pull-right">
+      <button type="button" class="btn btn-default" {{action 'close'}}>{{fa-icon icon="close"}} Cancel</button>
+    </div>
+  </div>
+</div>

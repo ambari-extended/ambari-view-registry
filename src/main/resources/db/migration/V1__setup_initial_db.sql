@@ -10,6 +10,7 @@ CREATE TABLE applications (
 CREATE TABLE application_versions (
   id                              BIGINT AUTO_INCREMENT PRIMARY KEY,
   version                         VARCHAR(50) NOT NULL,
+  published                       BOOLEAN NOT NULL,
   application_config              TEXT,
   application_id                  BIGINT NOT NULL,
   created_at                      TIMESTAMP,

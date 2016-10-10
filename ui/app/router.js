@@ -9,8 +9,10 @@ const Router = Ember.Router.extend({
 Router.map(function () {
   this.route('upload');
   this.route('apps', {path: '/applications'});
-  this.route('app', {path: '/application/:name'});
-  this.route('version', {path: '/application/:name/version/:version'});
+  this.route('app', {path: '/application/:name'}, function() {
+    this.route('version', {path: 'version/:version'});
+  });
+
 });
 
 export default Router;

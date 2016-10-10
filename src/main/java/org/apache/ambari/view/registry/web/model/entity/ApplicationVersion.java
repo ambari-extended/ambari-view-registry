@@ -49,6 +49,8 @@ public class ApplicationVersion {
 
   private String version;
 
+  private boolean published = false;
+
   @Temporal(value = TemporalType.TIMESTAMP)
   private Date createdAt;
 

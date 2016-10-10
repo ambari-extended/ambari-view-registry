@@ -75,6 +75,9 @@ public class ApplicationConfig {
   @NotNull
   private String minAmbariVersion;
 
+  @NotNull
+  private String artifactLocation;
+
   /**
    * An application can depend on other applications for its working.
    */
