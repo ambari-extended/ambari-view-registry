@@ -1,0 +1,6 @@
+{{#if version.published}}
+  <button class="btn btn-warning" {{action 'withhold'}}>Withhold</button>
+{{else}}
+  <button class="btn btn-success" {{action 'publish'}}>Publish</button>
+{{/if}}
+

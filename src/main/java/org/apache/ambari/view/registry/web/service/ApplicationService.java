@@ -183,7 +183,21 @@ public class ApplicationService {
     return Optional.empty();
   }
 
-  public Optional<ApplicationVersion> publishVersion(String appName, String version) {
-    return null;
+  public Optional<ApplicationVersion> publishVersion(String appName, String versionNumber, boolean publish) {
+    ApplicationVersion modifiedVersion = null;
+    Optional<Application> application = applicationRepository.findByName(appName);
+    if(application.isPresent()) {
+      Optional<ApplicationVersion> ver = application.get().getVersions()
+          .stream()
+          .filter(v -> versionNumber.equalsIgnoreCase(v.getVersion()))
+          .findFirst();
+
+      if(ver.isPresent()) {
+        ApplicationVersion version = ver.get();
+        version.setPublished(publish);
+        modifiedVersion = applicationVersionRepository.save(version);
+      }
+     }
+    return Optional.ofNullable(modifiedVersion);
   }
 }

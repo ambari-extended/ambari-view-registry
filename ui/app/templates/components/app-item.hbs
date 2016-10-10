@@ -14,7 +14,7 @@
       <p class="text-primary version-header"><strong>Versions</strong></p>
       <div class="version-body">
         {{#each application.sortedVersions as |version|}}
-          <p>{{#link-to "app.version" application version}}{{version.version}}{{/link-to}}</p>
+          <p class="{{if version.published 'published'}}">{{#link-to "app.version" application version}}{{version.version}}{{/link-to}}</p>
         {{/each}}
       </div>
 

@@ -23,6 +23,7 @@ import org.apache.ambari.view.registry.internal.exception.ConfigFileParseExcepti
 import org.apache.ambari.view.registry.web.config.ApplicationConfig;
 import org.apache.ambari.view.registry.web.model.dto.ApplicationWrapper;
 import org.apache.ambari.view.registry.web.model.dto.ApplicationsWrapper;
+import org.apache.ambari.view.registry.web.model.dto.VersionPublishRequest;
 import org.apache.ambari.view.registry.web.model.dto.VersionWrapper;
 import org.apache.ambari.view.registry.web.model.entity.Application;
 import org.apache.ambari.view.registry.web.model.entity.ApplicationVersion;
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,8 +90,10 @@ public class ApplicationController {
 
   @PutMapping(path = "/{appName}/versions/{version}/publish", produces = MediaType.APPLICATION_JSON_VALUE)
   public VersionWrapper publishVersion(@PathVariable("appName") String appName,
-                                                 @PathVariable("version") String version) {
-    Optional<ApplicationVersion> ver = service.publishVersion(appName, version);
+                                       @PathVariable("version") String version,
+                                       @RequestBody VersionPublishRequest publishRequest
+                                       ) {
+    Optional<ApplicationVersion> ver = service.publishVersion(appName, version, publishRequest.isPublish());
     return new VersionWrapper(ver);
   }
 
