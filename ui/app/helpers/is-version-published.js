@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 export function isVersionPublished([published]/*, hash*/) {
-  debugger;
   return published === 'true';
 }
 
