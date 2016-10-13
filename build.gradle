@@ -54,4 +54,7 @@ dependencies {
 
 emberCli {
 	proxyUrl = "http://localhost:10080"
+	if (project.hasProperty('emberCli.environment')) {
+		environment = project.property('emberCli.environment')
+	}
 }
